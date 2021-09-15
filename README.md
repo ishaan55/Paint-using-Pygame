@@ -3,12 +3,12 @@
 ## Introduction
 A simple paint application made in python using the **pygame** module.
 
-![Paint app Screenshot](https://github.com/ishaan55/Paint-using-Pygame/tree/main/Screenshots/Screenshot1.png)
+![Screenshot1](https://user-images.githubusercontent.com/84115956/133407857-e076351b-e7d5-4a7c-bf86-23006f7465ff.png)
 
 Includes Features like:
 - Fill bucket tool
 - Eyedropper
-- Eraser
+- Saves and Load your work
 - Color picker
 
 
