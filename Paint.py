@@ -30,6 +30,7 @@ font1 = pygame.font.Font(None,32)
 clear = font.render('Clear',True,(1,2,3))
 save = font.render('Save',True,(1,2,3))
 load = font.render('Load',True,(1,2,3))
+exp = font.render('Export',True,(1,2,3))
 
 class pixels:
     def __init__(self,x,y,color,width):
@@ -85,6 +86,10 @@ def prompt_file():
     top.destroy()
     return filename
 
+def export(surface,file_name):
+    a = surface.subsurface((0,0,Canvas_Width,Canvas_Height))
+    pygame.image.save(a,file_name+'.png')
+
 textbox = pygame.Rect(390,HEIGHT-85,170,30)
 textbox_passive_color = pygame.Color('gray15')
 textbox_active_color = pygame.Color('lightskyblue3')
@@ -120,6 +125,11 @@ def draw_window(grid,colors,choosen_color,file_name,textbox_state):
     WIN.blit(save,(400,HEIGHT-44))
     pygame.draw.rect(WIN,(200,200,200),(480,HEIGHT-45,80,30))
     WIN.blit(load,(490,HEIGHT-44))
+
+    # Export
+    pygame.draw.rect(WIN,(200,200,200),(600,HEIGHT-65,90,30))
+    WIN.blit(exp,(605,HEIGHT-64))
+
 
     for i in range(rows):
         for j in range(cols):
@@ -217,6 +227,10 @@ def main():
                             pickle.dump(grid,file2)
                             file2.close()
 
+                elif mx > 600 and mx < 690:
+                    if my > HEIGHT-65 and my < HEIGHT - 65 + 30:
+                        export(WIN,file_name)
+
                 elif mx > Canvas_Width+90 and mx < Canvas_Width+120:
                     if my > 20 and my < 50:
                         pen_state = 1
@@ -229,6 +243,7 @@ def main():
                     if my > 70 and my < 100:
                         pen_color = (255,255,255)
                         pen_state = 0
+
                 else:
                     for i in colors:
                         if i.clicked(mx,my):
